@@ -1,0 +1,41 @@
+package com.example.demo.model;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Entity
+public class Venta {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+
+    private Long id;
+    private LocalDate fecha;
+    private String estado;
+    private Double total;
+    @ManyToOne //relacion muchas a una 
+    private Sucursal sucursal;
+
+    @OneToMany (mappedBy = "venta", cascade = CascadeType.ALL, 
+        orphanRemoval = true, fetch = FetchType.EAGER) //en detalle venta esta el atributo venta
+    private List<DetalleVenta> detalle = new ArrayList<>(); //mapeo a detalle venta con un arrayList
+
+}
