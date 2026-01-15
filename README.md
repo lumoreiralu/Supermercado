@@ -1,1 +1,1 @@
-/// Tutorial para crud de venta, sucursales y productos usando SpringBoot
+/// crud de venta, sucursales y productos usando SpringBoot
